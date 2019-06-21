@@ -11,7 +11,7 @@
   },
   "scripts": {},
   "publisher": "feifan",
-  "icon": "https://qhstaticssl.kujiale.com/newt/167/image/png/1560751474937/tacky.png",
+  "icon": "https://github.com/kujiale/tacky/raw/master/plugins/tacky-snippets/images/tacky.png",
 	"engines": {
 		"vscode": "^1.28.0"
 	},
