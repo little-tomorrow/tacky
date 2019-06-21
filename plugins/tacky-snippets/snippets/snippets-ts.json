@@ -1,0 +1,201 @@
+{
+  "Create entry with tacky": {
+		"prefix": "tentry",
+		"body": [
+			"import React from 'react';",
+			"import Tacky from '@tacky/store';",
+			"import '@style/global.scss';",
+			"",
+			"import Layout from './Layout';",
+			"",
+			"async function main() {",
+			"\tTacky.config({",
+			"\t\tdevTool: false,",
+			"\t\tmiddleware: {",
+			"\t\t\tlogger: false,",
+			"\t\t}",
+			"\t});",
+			"\tTacky.render(",
+			"\t\t<Layout />,",
+			"\t\t'#app',",
+			"\t);",
+			"}",
+			"",
+			"main();",
+			""
+		],
+		"description": "Create entry"
+	},
+	"Create Domain": {
+		"prefix": "tdomain",
+		"body": [
+			"import { Domain, state, effect, mutation } from '@tacky/store';",
+			"",
+			"export default class ${1:${TM_FILENAME_BASE/(-|^)(\\w+)(\\..+)?/${2:/capitalize}/g}Domain} extends Domain {",
+			"\t@state() example = '';",
+			"",
+			"\t@mutation",
+			"\tupdateExample(example) {",
+			"\t\tthis.example = example;",
+			"\t}",
+			"",
+			"\t@effect",
+			"\tasync fetch() {",
+			"\t\tthis.updateExample('example');",
+			"\t}",
+			"}",
+			""
+		],
+		"description": "Create Domain"
+	},
+	"Create state": {
+		"prefix": "tstate",
+		"body": [
+			"@state() ${1:state} = ${0:initValue};"
+		],
+		"description": "Create state"
+	},
+	"Update state": {
+		"prefix": "tupdate",
+		"body": [
+			"this.\\$update({$0});"
+		],
+		"description": "Update state"
+	},
+	"Create mutation": {
+		"prefix": "tmutation",
+		"body": [
+			"@mutation",
+			"${1:updateState}(${2:newState}) {",
+			"\tthis.${3:state} = ${2:newState};",
+			"}"
+		],
+		"description": "Create Mutation for update state"
+	},
+	"Create reducer": {
+		"prefix": "treducer",
+		"body": [
+			"@reducer",
+			"${1:updateState}(state, ${2:newState}) {",
+			"\treturn { ...state, ${2:newState} };$0",
+			"}"
+		],
+		"description": "Create reducer for update state"
+	},
+	"Create effect": {
+		"prefix": "teffect",
+		"body": [
+			"@effect",
+			"async ${1:fetch}() {",
+			"\t$0",
+			"}"
+		],
+		"description": "Create effect"
+	},
+	"Create initDomain": {
+		"prefix": "tinitdomain",
+		"body": [
+			"import User from '@domain/user/user-info';",
+			"",
+			"const \\$user = new User();",
+			"",
+			"export {",
+			"\t\\$user,",
+			"};",
+			""
+		],
+		"description": "Create initDomain"
+	},
+	"Create presenter": {
+		"prefix": "tpresenter",
+		"body": [
+			"import { \\$user } from '../initDomain';",
+			"",
+			"class ${1:${TM_FILENAME_BASE/(-|^)(\\w+)(\\..+)?/${2:/capitalize}/g}Presenter} {",
+			"\teventHandler() {",
+			"\t\treturn \\$user.getInfo();$0",
+			"\t}",
+			"}",
+			"",
+			"export default new ${1:${TM_FILENAME_BASE/(-|^)(\\w+)(\\..+)?/${2:/capitalize}/g}Presenter}();",
+			""
+		],
+		"description": "Create presenter"
+	},
+	"Creates a Class Component with tacky": {
+		"prefix": "tcc",
+		"body": [
+			"import React, { Component } from 'react';",
+			"import { stick } from '@tacky/store';",
+			"",
+			"@stick()",
+			"class ${1:${TM_FILENAME_BASE}} extends Component {",
+			"\trender() {",
+			"\t\treturn (",
+			"\t\t\t<div>",
+			"\t\t\t\t$0",
+			"\t\t\t</div>",
+			"\t\t);",
+			"\t}",
+			"}",
+			"",
+			"export default ${1:${TM_FILENAME_BASE}};",
+			""
+		],
+		"description": "Creates a Class Component with tacky"
+	},
+	"Creates a Function Component with tacky": {
+		"prefix": "tfc",
+		"body": [
+			"import React from 'react';",
+			"import { stick } from '@tacky/store';",
+			"",
+			"const ${1:${TM_FILENAME_BASE}} = stick(() => {",
+			"\treturn (",
+			"\t\t<div>",
+			"\t\t\t$0",
+			"\t\t</div>",
+			"\t);",
+			"});",
+			"",
+			"export default ${1:${TM_FILENAME_BASE}};",
+			""
+		],
+		"description": "Creates a Function Component with tacky"
+	},
+	"Creates a PureComponent with tacky": {
+		"prefix": "tcpc",
+		"body": [
+			"import React, { PureComponent } from 'react';",
+			"import { stick } from '@tacky/store';",
+			"",
+			"@stick()",
+			"class ${1:${TM_FILENAME_BASE}} extends PureComponent {",
+			"\trender() {",
+			"\t\treturn (",
+			"\t\t\t<div>",
+			"\t\t\t\t$0",
+			"\t\t\t</div>",
+			"\t\t);",
+			"\t}",
+			"}",
+			"",
+			"export default ${1:${TM_FILENAME_BASE}};",
+			""
+		],
+		"description": "Creates a PureComponent with tacky"
+	},
+	"Creates middleware": {
+		"prefix": "tmiddleware",
+		"body": [
+			"const ${1:${TM_FILENAME_BASE/(-)(\\w+)(\\..+)?/${2:/capitalize}/g}Middleware} = ({ dispatch, getState }) => (next) => (action) => {",
+			"\t$0",
+			"\treturn next(action);",
+			"};",
+			"",
+			"export default ${1:${TM_FILENAME_BASE/(-)(\\w+)(\\..+)?/${2:/capitalize}/g}Middleware};",
+			""
+		],
+		"description": "Creates middleware"
+	}
+}
